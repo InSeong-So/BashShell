@@ -55,6 +55,9 @@ DNS2="(호스트 DNS-2)"
 yum install -y docker
 또는
 curl -fsSL https://get.docker.com/
+실행 :
+systemctl start docker
+systemctl enable docker
 
 # Docker-Compose 설치
 설치 :
@@ -63,3 +66,5 @@ curl -L https://github.com/docker/compose/releases/download/1.23.1/docker-compos
 chmod +x /usr/local/bin/docker-compose
 버전 확인 :
 docker-compose --version
+실행 :
+docker-compose up -d
