@@ -1,5 +1,5 @@
 # BashShell
-ShellScriptTest
+Linux CLI ~ ShellScript Practice
 
 # 네트워크 정보 확인
 cmd - ipconfig/all
