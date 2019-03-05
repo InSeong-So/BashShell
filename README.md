@@ -10,6 +10,7 @@ cmd - ipconfig/all
 # 가상서버 IP 변경
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
 
+```
 <기본>
 TYPE="Ethernet"
 PROXY_METHOD="none"
@@ -26,7 +27,9 @@ NAME="enp0s3"
 UUID="3bab0769-8e7e-4a45-a83d-f20e94cc4279"
 DEVICE="enp0s3"
 ONBOOT="yes"
+```
 
+```
 <변경 후>
 TYPE="Ethernet"
 PROXY_METHOD="none"
@@ -49,6 +52,7 @@ IPADDR="(자신에게 할당된 가상화 아이피)"
 GATEWAY="(호스트 게이트웨이)"
 DNS1="(호스트 DNS-1)"
 DNS2="(호스트 DNS-2)"
+```
 
 # Docker 설치
 설치 :
