@@ -1,9 +1,9 @@
 # 우분투 오라클 설치
-=> 우분투 데스크탑 환경에서 설치
+> 우분투 데스크탑 환경에서 설치
 
 ## 설치 파일 다운
 http://www.oracle.com/technetwork/indexes/downloads/index.html#database
--> Database -> Database 11g Standard / Enterprise Edition -> 로그인 -> 파일저장
+> Database -> Database 11g Standard / Enterprise Edition -> 로그인 -> 파일저장
 
 ---
 
