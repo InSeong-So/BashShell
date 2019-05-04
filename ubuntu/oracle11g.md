@@ -295,6 +295,7 @@ CREATE USER ugis IDENTIFIED BY tprPchlrkd DEFAULT TABLESPACE USERS TEMPORARY TAB
 ```
 
 ### 생성한 USER에 권한주기
+```sql
 GRANT connect, resource, dba TO [user_name];
 
 예)
