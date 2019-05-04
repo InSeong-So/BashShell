@@ -1,4 +1,4 @@
-# BashShell
+# Linux
 Linux CLI ~ ShellScript Tips
 
 <br>
