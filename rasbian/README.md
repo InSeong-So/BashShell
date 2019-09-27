@@ -459,15 +459,35 @@ network={
     - `Seoul` 선택
 
 # 라즈베리 파이 subversion 설치
-- 패키지 설치
+> 기본 포트 : 3690/tcp, 3690/udp
+>> 클라이언트는 [VisualSVN](https://www.visualsvn.com/server/download/) 또는 [TortoiseSVN](https://tortoisesvn.net/downloads.html) 사용
+
+## 패키지 설치(시스템 업데이트 실시 후 진행)
+- svn 패키지 설치
   - `sudo apt-get install subversion apache2 libapache2-mod-svn -y`
+    - subversion : SVN 소프트웨어
+    - apache2 : 웹 브라우저 연결
+    - libapache2-mod-svn : 아파치 웹 브라우저 - SVN 연동
 
+<br>
+
+## 접속방법 1 : 저장소에 svn://아이피 형태로 직접 접속
 - svn 통합 저장소 디렉토리 생성
-  - `sudo mkdir /home/pi/svnRepository`
-  - `cd /home/pi/svnRepository`
+  - `sudo svnadmin create /home/pi/svn`
 
-- 테스트
-  -  `sudo svn import -m 'CREATE_TEST' /home/pi/test/temp.txt http://101.235.204.93:19039/home/pi/svnRepository/temp01/`
+- 프로젝트에 접근을 허용할 ID와 Password 설정
+  - `sudo vim /home/pi/svn/conf/passwd`
+
+- 프로젝트에 접근에 대한 보안정책 설정(주석 제거)
+  - `sudo vim /home/pi/svn/conf/svnserve.conf`
+    - `anon-access` = read
+    - `auth-access` = write
+    - `password-db` = passwd
+    - `realm` = My First Repository
+
+<br>
+
+## 접속방법 2 : 저장소에 http://아이피/svn 형태로 웹 브라우저를 통해 접속
 
 <br>
 
