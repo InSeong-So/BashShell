@@ -351,18 +351,33 @@ network={
 
 # 라즈베리 파이에 웹 서비스 호스팅하기
 ## Java 설치
-- openjdk 설치
-  - `sudo apt-get install openjdk-8-jdk -y`
+- ~~openjdk 설치~~(스프링부트 에러로 인해 버전 다운로드)
+  - ~~`sudo apt-get install openjdk-8-jdk -y`~~
+
+- ~~java compiler 위치 확인~~
+  - ~~`which javac`~~
+
+- ~~환경변수 추가~~
+  - ~~`sudo vim /etc/profile`~~
+  - ~~export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-armhf~~
+  - ~~`sudo reboot`~~
+
+- jdk 다운로드 후 압축 해제
+  - `sudo tar -zxvf jdk-8u221-linux-arm32-vfp-hflt.tar.gz`
+
+- 압축해제된 jdk 폴더 이동
+  - `sudo mv jdk1.8.0_221 /usr/lib/jvm/jdk1.8.0_221`
+
+- 설정파일 변경
+  - `sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_221/bin/java 1`
+  - `sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_221/bin/javac 1`
+  - `sudo update-alternatives --config java`
+  - `sudo update-alternatives --config javac`
 
 - 버전 확인
   - `java --version`
 
-- java compiler 위치 확인
-  - `which javac`
-
-- 환경변수 추가
-  - `sudo vim /etc/profile`
-  - export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-armhf
+- 제부팅
   - `sudo reboot`
 
 <br>
@@ -430,7 +445,7 @@ network={
 
 ## Maven 설치
 - maven 설치
-  - `sudo apt-get install maven`
+  - `sudo apt-get install maven -y`
 
 - 설치 후 버전 확인
   - `mvn --version`
