@@ -574,3 +574,37 @@ network={
 # [PostgreSQL 설치와 운용](DB/postgresql/README.md)
 
 <br>
+
+# 라즈베리 파이 토렌트 운용
+- 토렌트 머신 설치
+  - `sudo apt-get install transmission-daemon -y`
+
+- 토렌트 머신 설정
+  - `sudo service transmission-daemon stop`
+  - `sudo vim /etc/transmission-daemon/settings.json`
+    ```sh
+    ## [웹 클라이언트 접속 설정 항목]
+    "rpc-whitelist-enabled": false, ## 웹 클라이언트의 whitelist(접속 허용 목록) 설정 여부
+                                    ## false 설정 시, 모든 접속 허용. true는 whitelist 목록만 허용
+    "rpc-password": "{543d21048c36a0add7d82410fadc6008248e2b73cBW6uECv", 
+                                    ## whiltelist를 false 설정하면 웹 클라이언트 접속 id와 password 설정 필요
+    "rpc-username": "transmission", ## 초기 계정 정보는 username : transmission, password : transmission
+    "rpc-port": 9091,               ## 웹 클라이언트 접속 주소 설정(포트 번호)
+
+    ## [다운로드 폴더 설정 항목]
+    "download-dir": "/home/pi/Torrent/temp_bucket",
+                                    ## 다운로드 완료 파일을 저장할 폴더 지정
+    "incomplete-dir": "/home/pi/Torrent/Incomplete_box",
+    "incomplete-dir-enabled": true, ## 다운로드 진행 중인 파일을 저장할 폴더 지정
+                                    ## incomplete-dir-enabled을 true 설정해줘야 적용
+    
+    ## [토렌트 파일 다운로드 시작시, 토렌트 시드 파일(.torrent) 제거]
+    "trash-original-torrent-files": true,
+                                    ## 다운로드 시작하면 업로드한 토렌트 시드 파일을 자동으로 제거
+
+    ## [토렌트 파일 업로드 시 다운로드 자동 실행 항목]
+    "watch-dir": "/home/pi/Torrent/magnet_box",
+                                    ## watch-dir-enabled를 true로 설정하고 dir 지정
+    "watch-dir-enabled": true       ## watch 관련한 설정은 settings.json에 기본으로 존재하지 않음
+                                    ## 파일 마지막 부분에 새로 추가(콤마 없음)
+    ```
