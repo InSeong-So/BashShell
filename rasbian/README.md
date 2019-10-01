@@ -377,7 +377,11 @@ network={
 - 버전 확인
   - `java --version`
 
-- 제부팅
+- JAVA_HOME 설정(Maven 설치 시 JAVA_HOME이 설정되어 있지 않으면 오류 발생)
+- `export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_221`
+- `export PATH=$JAVA_HOME/jre/bin:$PATH`
+
+- 재부팅
   - `sudo reboot`
 
 <br>
