@@ -594,6 +594,10 @@ network={
 
 <br>
 
+# [MS-SQL 설치와 운용](DB/ms-sql/README.md)
+
+<br>
+
 # 라즈베리 파이 토렌트 운용
 - 토렌트 머신 설치
   - `sudo apt-get install transmission-daemon -y`
@@ -627,3 +631,15 @@ network={
     "watch-dir-enabled": true       ## watch 관련한 설정은 settings.json에 기본으로 존재하지 않음
                                     ## 파일 마지막 부분에 새로 추가(콤마 없음)
     ```
+
+# Docker 설치
+- 도커 설치(일반적인 리눅스 설치방법과 상이함)
+  - `curl -fsSL get.docker.com -o get-docker.sh`
+  - `sudo sh get-docker.sh`
+
+- 도커 설치 확인
+  - `sudo docker --version`
+
+- 도커 실행 편의성을 위한 설정
+  - `sudo groupadd docker`
+  - `sudo usermod -aG docker pi`
