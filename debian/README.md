@@ -85,7 +85,7 @@ network={
 
 ## 리눅스 SSH를 통한 해킹 방어
 ### ssh port 변경
-- `sudo vi /etc/ssh/sshd_config`
+- `sudo vim /etc/ssh/sshd_config`
 
 - sshd_config 파일의 Port 항목을 원하는 번호로 변경
   - 이미 사용 중인 번호는 피해야 함
@@ -109,7 +109,7 @@ network={
     ```
 
 ### services 파일 port 변경
-- `sudo vi /etc/services`
+- `sudo vim /etc/services`
   - 리눅스 services 파일에는 모든 네트워크 서비스의 포트 번호와 용도가 기재되어 있음
   - 기본적으로 네트워크 프로그램들은 모두 이 파일(/etc/services)의 서비스/포트번호/프로토콜을 확인
   - 따라서 services 파일의 ssh 항목도 위에서 변경한 포트 번호로 동일하게 변경
@@ -135,7 +135,7 @@ network={
     ```
 
 - 설정이 완료되면 라즈베리 파이 재부팅
-  - `sudo reboot`
+  - `sudo shutdown -r now`
 
 <br>
 
@@ -149,7 +149,7 @@ network={
 
 - 파일 설정 변경
   - `sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
-  - `sudo vi /etc/fail2ban/jail.local`
+  - `sudo vim /etc/fail2ban/jail.local`
 
   - jail.local 파일의 `[sshd]` 항목을 찾아 기재
     - `port` : ssh 기본 포트가 기록되어 있으며 변경한 포트 번호로 교체
@@ -186,7 +186,7 @@ network={
   - `Hostname` 선택
   - 변경하고자 하는 Hostname 기재 후 OK
 
-- `sudo reboot`
+- `sudo shutdown -r now`
 
 <br>
 
@@ -250,7 +250,7 @@ network={
   - `sudo apt-get install xscreensaver -y`
 
 - 커널 cmdline
-  - `sudo vi /boot/cmdline.txt`
+  - `sudo vim /boot/cmdline.txt`
   - `consoleblank=0`을 행의 마지막에 추가
 
 <br>
@@ -360,7 +360,7 @@ network={
 - ~~환경변수 추가~~
   - ~~`sudo vim /etc/profile`~~
   - ~~export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-armhf~~
-  - ~~`sudo reboot`~~
+  - ~~`sudo shutdown -r now`~~
 
 - jdk 다운로드 후 압축 해제
   - `sudo tar -zxvf jdk-8u221-linux-arm32-vfp-hflt.tar.gz`
@@ -382,7 +382,7 @@ network={
 - `export PATH=$JAVA_HOME/jre/bin:$PATH`
 
 - 재부팅
-  - `sudo reboot`
+  - `sudo shutdown -r now`
 
 <br>
 
@@ -391,8 +391,7 @@ network={
   - `sudo apt-get install tomcat8 -y`
 
 - 홈 디렉토리에 심볼릭 링크 만들기
-  - `sudo mkdir tomcat8`
-  - `sudo ln -s /var/lib/tomcat8/ tomcat8`
+  - `sudo ln -s /var/lib/tomcat8/ ~/tomcat8`
 
 - server.xml 설정
   - `sudo vim tomcat8/conf/server.xml`
@@ -479,30 +478,98 @@ network={
 
 ## 패키지 설치(시스템 업데이트 실시 후 진행)
 - svn 패키지 설치
-  - `sudo apt-get install subversion apache2 libapache2-mod-svn -y`
-    - subversion : SVN 소프트웨어
-    - apache2 : 웹 브라우저 연결
-    - libapache2-mod-svn : 아파치 웹 브라우저 - SVN 연동
+  - `sudo apt-get install subversion -y`
+
+- 원격 저장소 생성
+  - `sudo mkdir /srv/svn/`
+  - `sudo mkdir /srv/svn/java`
+  - `sudo svnadmin create --fs-type fsfs /srv/svn/java`
 
 <br>
 
-## 접속방법 1 : 저장소에 svn://아이피 형태로 직접 접속
-- svn 통합 저장소 디렉토리 생성
-  - `sudo svnadmin create /home/pi/svn`
+## svn 설정
+- 컨트롤 권한 추가
+  - `sudo addgroup sisrepo`
+  - `sudo chgrp -R sisrepo /srv/svn/java`
+    ```sh
+    # 기타 옵션
+    chmod -R g+rw  /srv/svn/java       # group mebers my write
+    chmod -R o-rwx  /srv/svn/java      # other not.
+    chmod g+s /srv/svn/java/db         #  this ensures log-write
+    ```
 
-- 프로젝트에 접근을 허용할 ID와 Password 설정
-  - `sudo vim /home/pi/svn/conf/passwd`
+  - `sudo useradd isso`
+  - `sudo adduser isso sisrepo`
 
-- 프로젝트에 접근에 대한 보안정책 설정(주석 제거)
-  - `sudo vim /home/pi/svn/conf/svnserve.conf`
-    - `anon-access` = read
-    - `auth-access` = write
-    - `password-db` = passwd
-    - `realm` = My First Repository
+- svn 옵션 설정
+  - `sudo vim /srv/svn/java/conf/svnserve.conf`
+    ```sh
+    anon-access = read
+    auth-access = write
+    realm = SIS Java Repository
+    ```
+
+- Umask 설정
+  - `which svnserve`
+  - `sudo mv /usr/bin/svnserve /usr/bin/svnserve_orig`
+  - `sudo touch /usr/bin/svnserve`
+  - `sudo chmod 755 /usr/bin/svnserve`
+  - `sudo vim /usr/bin/svnserve`
+    ```sh
+    #!/bin/bash
+    umask 002  
+    /usr/bin/svnserve_orig $*
+    ```
 
 <br>
 
-## 접속방법 2 : 저장소에 http://아이피/svn 형태로 웹 브라우저를 통해 접속
+## Apache2 설치
+- 패키지 설치
+  - `sudo apt-get install apache2 -y`
+
+<br>
+
+## libapache2-mod-svn 설치
+- 패키지 설치
+  - `sudo apt-get install libapache2-mod-svn -y`
+
+- Apache server 설정
+  - `sudo vim /etc/apache2/mods-enabled/dav_svn.conf`
+    ```sh
+    # Check the location of dav_svn.conf then just
+    # copy all following lines to your shell and hit enter.
+    #  conf will be appended to dav_svn.conf
+    DAV svn  
+    SVNPath /srv/svn/java
+
+    AuthType Basic  
+    AuthName &quot;My Java Repository&quot;  
+    AuthUserFile /etc/apache2/svn.pass  
+    Require valid-user
+    ```
+
+- User 비밀번호 추가
+  - `sudo htpasswd -cm /etc/apache2/svn.pass aho`
+
+<br>
+
+~~## 접속방법 1 : 저장소에 svn://아이피 형태로 직접 접속~~(위에 재정리)
+~~- svn 통합 저장소 디렉토리 생성~~
+  ~~- `sudo svnadmin create /home/pi/svn`~~
+
+~~- 프로젝트에 접근을 허용할 ID와 Password 설정~~
+  ~~- `sudo vim /home/pi/svn/conf/passwd`~~
+
+~~- 프로젝트에 접근에 대한 보안정책 설정(주석 제거)~~
+  ~~- `sudo vim /home/pi/svn/conf/svnserve.conf`~~
+    ~~- `anon-access` = read~~
+    ~~- `auth-access` = write~~
+    ~~- `password-db` = passwd~~
+    ~~- `realm` = My First Repository~~
+
+<br>
+
+~~## 접속방법 2 : 저장소에 http://아이피/svn 형태로 웹 브라우저를 통해 접속~~
 
 <br>
 
@@ -580,7 +647,7 @@ network={
     - ~~`sudo dpkg -i 3-jdbc_19.3.0.0.0-2_all.deb`~~
 
 ## 현 운영채제에서는 Oracle DB 설치불가
-- rasbian OS에서는 불가능함
+- debian OS에서는 불가능함
 
 - Linux for Oracle OS를 설치해야 가능
 
