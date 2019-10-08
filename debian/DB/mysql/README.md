@@ -1,8 +1,19 @@
 # MySQL
 ## MySQL 설치
-- `sudo apt-get install mysql-server`
-  - 현재 `mysql-server`에서 `mariadb-server`로 대체되었음
-- `sudo apt-get install mariadba-server -y`
+- MySQL
+  - `sudo apt-get install mysql-server -y`
+    - debianOS : 현재 `mysql-server`에서 `mariadb-server`로 대체되었음
+
+- MariaDB
+  - `sudo apt-get install mariadb-server -y`
+  - ubuntu OS : 설치방법이 다름
+  - `sudo apt-get install software-properties-common`
+  - `sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8`
+  - `sudo add-apt-repository "deb [arch=amd64,arm64,ppc64el] http://mariadb.mirror.liquidtelecom.com/repo/10.4/ubuntu $(lsb_release -cs) main"`
+  - `sudo apt update`
+  - `sudo apt -y install mariadb-server mariadb-client`
+  - `sudo systemctl start mysql`
+  - `sudo systemctl status mysql`
 
 - root 암호 설정
   - mysql 접속 : `sudo mysql -u root mysql`
@@ -116,3 +127,29 @@
     -- 확인
     select * from employees;
     ```
+
+- 데이터베이스 덤프
+  - `sudo mysqldump -u root -p employees > bak2019.sql`
+
+- 데이터베이스 생성 후 데이터 덤프(데이터베이스 이름변경 때 사용)
+  - `mysql -u root -p -e "create database employees01"`
+  - `sudo mysql -u root -p employees01 < bak2019.sql`
+
+<br>
+
+## 삭제
+- MySQL
+  - `sudo apt-get purge mysql-server -y`
+  - `sudo apt-get purge mysql-common -y`
+
+- MariaDB
+  - `sudo apt-get purge mariadb-server -y`
+  - `sudo apt-get purge mariadb-common -y`
+
+- 공통
+  - `sudo rm -rf /var/log/mysql`
+  - `sudo rm -rf /var/log/mysql.*`
+  - `sudo rm -rf /var/lib/mysql`
+  - `sudo rm -rf /etc/mysql`
+
+<br>

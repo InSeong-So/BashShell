@@ -701,12 +701,38 @@ network={
 
 # Docker 설치
 - 도커 설치(일반적인 리눅스 설치방법과 상이함)
-  - `curl -fsSL get.docker.com -o get-docker.sh`
-  - `sudo sh get-docker.sh`
+  - `sudo apt update`
+  - `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+  - `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+  - `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"`
+  - `sudo apt update`
+  - `sudo apt-cache policy docker-ce`
+  - `sudo apt-get install docker -y`
+  - `sudo snap install docker`
 
 - 도커 설치 확인
   - `sudo docker --version`
 
-- 도커 실행 편의성을 위한 설정
-  - `sudo groupadd docker`
-  - `sudo usermod -aG docker pi`
+- 도커 서비스 확인
+  - `sudo snap services`
+  - `sudo snap start docker`
+  - `sudo snap services`
+
+- ubuntu core 16 사용시 추가
+  - `sudo snap connect docker:home`
+
+- 도커 그룹 설정
+  - `sudo addgroup --system docker`
+  - `sudo adduser $USER docker`
+  - `newgrp docker`
+
+- 도커 enable/disenable
+  - `sudo snap disable docker`
+  - `sudo snap enable docker`
+
+- 도커 로그인
+  - `sudo docker login`
+
+- MS-SQL 이미지 받기
+  - `docker pull mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
+  - `docker run -e ACCEPT_EULA=Y -e SA_PASSWORD='sisparang1!' -e MSSQL_PID=Express -p 443:443 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
