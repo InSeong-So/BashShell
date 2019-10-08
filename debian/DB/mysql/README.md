@@ -67,8 +67,8 @@
   - 두번째 : `insert into user (host, user, password) values('%', '{아이디}', password('{패스워드}'));`
 
 - 사용자 계정 권한 부여
-  - `grant all privileges on SISMASTER.* to 'sismaster'@'%' idetified by 'sisparang1!' with grant option;`
-  
+  - `grant all privileges on SISMASTER.* to 'sismaster'@'%' identified by 'sisparang1!' with grant option;`
+
 - 데이베이스 사용
   - `use SISMASTER;`
 
@@ -153,3 +153,38 @@
   - `sudo rm -rf /etc/mysql`
 
 <br>
+
+## 로그파일 남기기
+- Log 설정
+  - `sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf`
+    ```sh
+    # [sqld] 하위
+    #
+    # * Logging and Replication
+    #
+    # Both location gets rotated by the cronjob.
+    # Be aware that this log type is a performance killer.
+    # As of 5.1 you can enable the log at runtime!
+    #general_log_file        = /var/log/mysql/mysql.log
+    general_log_file        = /home/sis/Database/mysql/log/sis_general.log
+    #general_log             = 1
+    #
+    # Error log - should be very few entries.
+    #
+    log_error               = /home/sis/Database/mysql/log/sis_error.log
+    #
+    # Enable the slow query log to see queries with especially long duration
+    slow_query_log_file     = /home/sis/Database/mysql/log/sis_slow.log
+    long_query_time         = 5
+    ```
+
+  - `sudo cd 기입한 경로`
+  - `sudo chmod 644 *.log`
+  - `sudo service mysql restart`
+
+- 데이터베이스에서 로그파일 설정
+  - `sudo mysql -u root -p`
+  - `show variables where Variable_name in ('version','log','general_log');`
+  - `show variables like 'general%';`
+  - `SET GLOBAL general_log = ON;`
+  - `show variables like 'general%';`
