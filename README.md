@@ -1,18 +1,34 @@
-# 목차
+# Server 저장소
 
-## [CentOS](centos/README.md)
-
-<br>
-
-## [Ubuntu](ubuntu/README.md)
-
-<br>
-
-## [Raspberry Pi](debian/README.md)
+## 
+### TODO
+- [ ] 각 OS에 맞는 환경 구축용 셸 스크립트 작성
+- [ ] 라즈베리파이 유튜브 동영상 무료 다운로드 구축
+- [ ] 마크다운 정리 → 위키로 변경
 
 <br>
 
-# 기타
+### DOING
+- [ ] Not thing
+
+<br>
+
+### DONE
+- [x] 개인 서버 구축 완료
+  - [보안상의 이유로 영화 다운로드용 파일 서버 링크](ftp://101.235.203.94:20000)
+
+<hr>
+<br>
+
+## 목차
+- [RaspberryPi-Debian](debian/README.md)
+- [CentOS](centos/README.md)
+- [Ubuntu](ubuntu/README.md)
+
+<hr>
+<br>
+
+~~## 기타~~(변경 전)
 ## 대용량 파일 커밋
 - 설치
   - [Git lfs 다운로드](https://git-lfs.github.com/)
