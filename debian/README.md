@@ -483,10 +483,15 @@ network={
 # 라즈베리 파이 subversion 설치
 > 기본 포트 : 3690/tcp, 3690/udp
 >> 클라이언트는 [VisualSVN](https://www.visualsvn.com/server/download/) 또는 [TortoiseSVN](https://tortoisesvn.net/downloads.html) 사용
+>>> [참고1](https://guzene.tistory.com/233), [참고2](https://hellogk.tistory.com/128)
 
 ## 패키지 설치(시스템 업데이트 실시 후 진행)
 - svn 패키지 설치
   - `sudo apt-get install subversion -y`
+
+- svn 서버 구동을 위한 패키지 설치
+  - `sudo apt-get install apache2 -y`
+  - `sudo apt-get install libapache2-mod-svn -y`
 
 - 원격 저장소 생성
   - `sudo mkdir /srv/svn/`
