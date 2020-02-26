@@ -861,3 +861,73 @@ network={
 
 - 리스타트 후 변경한 설정 적용 안될 시
   - `sudo service nginx reload`
+
+<hr>
+<br>
+
+# NodeJs 설치
+> [참고](https://promobile.tistory.com/381)
+
+- 설치 *(build-essntial, curl이 설치되었다면 생략)*
+  - `sudo apt-get update`
+  - `sudo apt-get install -y build-essential`
+  - `sudo apt-get install -y curl`
+  - `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash --`
+  - `sudo apt-get install -y node.js`
+
+- 확인
+  - `node -v` 또는 `npm -v`
+
+- Node.js 응용 프로그램을 실행하는 방법은 `node <filename>` 또는 `npm <command>` 임
+  - 별개의 터미널을 이용해 실행하거나 OS의 스케쥴러를 활용함
+  - 단, 웹 서비스와 같이 실행되어야 하는 App은 문제 발생 가능
+  - PM2는 Node.js App을 백그라운드에서 실행하여 문제를 예방할 수 있다.
+
+- 설치
+  - sudo npm install --g pm2
+
+- 실행
+  - `sudo pm2 start <app.js>`
+  - `sudo pm2 start <app.js> --name=<app name>` *(별도로 지정하고 싶은 경우)*
+
+- 현재 실행 중인 App 목록 조회
+  - sudo pm2 list
+
+  - 항목별 설명
+
+    |항목|설명|
+    |----|----|
+    |App name|실행 중인 App의 이름. 이 이름을 이용해 프로세스를 제어할 수 있으며 이후로 `<name>`이라고 표현|
+    |id|실행 중인 App의 ID. ID를 이용해서도 프로세스를 제어할 수 있으며 이후로 `<id>`라고 표현|
+    |mode|프로세스 실행 방식. 일반적으로 fork가 표시되고 클러스터링인 경우 cluster가 표시|
+    |pid|OS에서 지정된 Process ID|
+    |status|현재 상태. 정상 실행인 경우 online으로 표시되며 상태에 따라 error, stopped 등이 표시|
+    |restart|재시작 횟수. restart 명령어로 재시작하거나, 오류로 인해 자동으로 재시작 된 경우 횟수가 증가|
+    |uptime|시작된 이후로부터의 실행 시간. restart 된 경우 0초부터 다시 시작|
+    |cpu|CPU 사용량|
+    |mem|메모리 사용량|
+    |watching|watch 여부가 표시|
+
+- 현재 실행 중인 App의 간략한 정보 조회
+  - `sudo pm2 show <id>`
+  - `sudo pm2 show <name>`
+
+- 실행된 App Log 조회
+  - `sudo pm2 log`
+  - `sudo pm2 log <id>`
+  - `sudo pm2 log <name>`
+
+- App 다시 실행
+  - `sudo pm2 restart <id>`
+  - `sudo pm2 restart <name>`
+
+- App 중지
+  - `sudo pm2 stop <id>`
+  - `sudo pm2 stop <name>`
+
+- 목록에서 App 삭제
+  - `sudo pm2 delete <id>`
+  - `sudo pm2 delete <name>`
+
+<hr>
+<br>
