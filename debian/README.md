@@ -8,12 +8,14 @@
 ## [라즈비안 이미지 파일](https://www.raspberrypi.org/downloads/raspbian/)
 - `Desktop` : GUI를 포함한 여러 모듈 추가 버전, `Lite` : Minimal 버전
 
+<hr>
 <br>
 
 ## [SD카드 이미지 Write 프로그램](https://etcher.io)
 - 실행 후 다운받은 라즈비안 이미지 파일 Select, SD카드 Select 후 Flash 시작
   - Flash가 완료되면 SD카드 제거 후 재삽입
 
+<hr>
 <br>
 
 ## boot(E): 디스크에 파일 생성
@@ -44,6 +46,7 @@ network={
 
 - 라즈베리파이 제로W 모델은 랜포트가 없기 때문에 WiFi 접속 설정이 필요하다.
 
+<hr>
 <br>
 
 ## 라즈베리 파이 부팅 후 SSH 접속
@@ -61,16 +64,19 @@ network={
     password : raspberry
     ```
 
+<hr>
 <br>
 
 ## shell에서 라즈베리 파이 설정 메뉴 실행
 - `sudo raspi-config`
   - 비밀번호 변경 등 여러 설정을 진행할 수 있음
 
+<hr>
 <br>
 
 ## [Ref. Pi Guide: 라즈베리파이 이야기 한눈에 보기](https://geeksvoyage.com/pi-guide/)
 
+<hr>
 <br>
 
 # 네트워크 설정
@@ -81,6 +87,7 @@ network={
 - 패키지 버전 정보 최신 업데이트(root 계정으로 실행)
   - `sudo apt-get update -y && apt-get upgrade -y`
 
+<hr>
 <br>
 
 ## 리눅스 SSH를 통한 해킹 방어
@@ -88,6 +95,7 @@ network={
 - 현재 실행중인 프로세스의 포트 확인
   - `sudo netstat -ntlp | grep :80`
 
+<hr>
 <br>
 
 ### ssh port 변경
@@ -175,6 +183,7 @@ network={
 - 접속 차단된 ip 해제
   - `sudo fail2ban-client set sshd unbanip [ip]`
 
+<hr>
 <br>
 
 # 추가 설정
@@ -182,6 +191,7 @@ network={
 - 라즈베리 파이 환경 확인
   - `cat /proc/cpuinfo`
 
+<hr>
 <br>
 
 ## 기기 이름 변경
@@ -194,6 +204,7 @@ network={
 
 - `sudo shutdown -r now`
 
+<hr>
 <br>
 
 ## 라즈베리 파이 한글 설정
@@ -208,11 +219,13 @@ network={
     - `Asia` 선택
     - `Seoul` 선택
 
+<hr>
 <br>
 
 ## root 계정 비밀번호 설정
 - `sudo passwd root`
 
+<hr>
 <br>
 
 ## 계정 추가 및 삭제
@@ -223,6 +236,7 @@ network={
 - 사용자 계정 삭제
   - `sudo deluser --remove-all-files [계정이름]`
 
+<hr>
 <br>
 
 ## vim 설치
@@ -260,6 +274,7 @@ network={
 
 - [참고2](http://egloos.zum.com/daftcoder/v/245008)
 
+<hr>
 <br>
 
 ## 스크린 세이버 설정
@@ -273,6 +288,7 @@ network={
   - `sudo vim /boot/cmdline.txt`
   - `consoleblank=0`을 행의 마지막에 추가
 
+<hr>
 <br>
 
 ## IP 접속 주소(지역) 확인
@@ -282,6 +298,7 @@ network={
 - IP 접속 지역 확인
   - `whois [ip]`
 
+<hr>
 <br>
 
 ## IP 주소 확인
@@ -291,6 +308,7 @@ network={
 - 내부 IP 확인
   - `ifconfig` 또는 `ipconfig`
 
+<hr>
 <br>
 
 ## 방화벽 설치
@@ -315,6 +333,7 @@ network={
 - 방화벽 상태와 룰 확인
   - `sudo ufw status`
 
+<hr>
 <br>
 
 # 라즈베리 파이에 외장하드로 NAS 구성하기
@@ -349,6 +368,7 @@ network={
 - 접속 중인 유저 확인
   - `ps aux | grep vsftpd`
 
+<hr>
 <br>
 
 ## 공유를 위한 계정 추가와 디렉토리 설정
@@ -367,6 +387,7 @@ network={
   - `sudo vim /etc/fstab`
   - `/home/pi/hdd_storage/07_video/movie /home/sis_01/hdd_storage/movie/ none bind,defaults 0 1`
 
+<hr>
 <br>
 
 # 라즈베리 파이에 웹 서비스 호스팅하기
@@ -404,6 +425,7 @@ network={
 - 재부팅
   - `sudo shutdown -r now`
 
+<hr>
 <br>
 
 ## Tomcat 설치
@@ -464,6 +486,7 @@ network={
 - tomcat8 설정 후 적용
   - `sudo service tomcat8 restart`
 
+<hr>
 <br>
 
 ## Maven 설치
@@ -473,11 +496,15 @@ network={
 - 설치 후 버전 확인
   - `mvn --version`
 
+<hr>
+<br>
+
 ## 완료 후 테스트
 - index.jsp 파일 만들기
   - `sudo mv tomcat8/webapps/ROOT/index.html tomcat8/webapps/ROOT/index2.html`
   - `sudo vim index.jsp`
 
+<hr>
 <br>
 
 # 라즈베리 파이 subversion 설치
@@ -516,6 +543,7 @@ network={
   - `sudo mkdir /srv/svn/java`
   - `sudo svnadmin create --fs-type fsfs /srv/svn/java`
 
+<hr>
 <br>
 
 ## svn 설정
@@ -552,12 +580,14 @@ network={
     /usr/bin/svnserve_orig $*
     ```
 
+<hr>
 <br>
 
 ## Apache2 설치
 - 패키지 설치
   - `sudo apt-get install apache2 -y`
 
+<hr>
 <br>
 
 ## libapache2-mod-svn 설치
@@ -582,6 +612,7 @@ network={
 - User 비밀번호 추가
   - `sudo htpasswd -cm /etc/apache2/svn.pass aho`
 
+<hr>
 <br>
 
 ~~## 접속방법 1 : 저장소에 svn://아이피 형태로 직접 접속~~(위에 재정리)
@@ -598,10 +629,12 @@ network={
     ~~- `password-db` = passwd~~
     ~~- `realm` = My First Repository~~
 
+<hr>
 <br>
 
 ~~## 접속방법 2 : 저장소에 http://아이피/svn 형태로 웹 브라우저를 통해 접속~~
 
+<hr>
 <br>
 
 # sudo 명령어로 root 권한을 얻지 못할 때
@@ -644,6 +677,7 @@ network={
     #includedir /etc/sudoers.d
     ```
 
+<hr>
 <br>
 
 # ~~Oracle DB Client 연결~~
@@ -682,18 +716,22 @@ network={
 
 - Linux for Oracle OS를 설치해야 가능
 
+<hr>
 <br>
 
 # [MySQL 설치와 운용](DB/mysql/README.md)
 
+<hr>
 <br>
 
 # [PostgreSQL 설치와 운용](DB/postgresql/README.md)
 
+<hr>
 <br>
 
 # [MS-SQL 설치와 운용](DB/ms-sql/README.md)
 
+<hr>
 <br>
 
 # 라즈베리 파이 토렌트 운용
@@ -768,6 +806,7 @@ network={
   - `docker pull mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
   - `docker run -e ACCEPT_EULA=Y -e SA_PASSWORD='sisparang1!' -e MSSQL_PID=Express -p 443:443 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
 
+<hr>
 <br>
 
 # Nginx 설치
