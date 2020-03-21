@@ -1,6 +1,6 @@
 # 라즈베리 파이로 개인 서버 구축하기
 > 버전 : Raspberry Pi 3B+
->> Micro SD Card : 16GB
+>> Micro SD Card : 16GB *(2020.03.19 부)*
 
 # 목차
 
@@ -483,7 +483,25 @@ network={
 # 라즈베리 파이 subversion 설치
 > 기본 포트 : 3690/tcp, 3690/udp
 >> 클라이언트는 [VisualSVN](https://www.visualsvn.com/server/download/) 또는 [TortoiseSVN](https://tortoisesvn.net/downloads.html) 사용
->>> [참고1](https://guzene.tistory.com/233), [참고2](https://hellogk.tistory.com/128)
+>>> [참고2](https://hellogk.tistory.com/128)
+
+## 패키지 설치
+- 패키지 업데이트
+  - `sudo apt-get update`
+  - `sudo apt-get upgrade`
+
+- 필요 모듈 설치
+  - `sudo apt-get install libapache2-mod-svn -y`
+  - `sudo apt-get install subversion -y`
+  - `sudo apt-get install apache2 -y`
+
+## Repository 폴더 생성
+- 폴더 생성
+  - mkdir /home/pi/repose
+  - svnadmin create /home/pi/repose/{프로젝트명}
+
+## svn 접속권한 설정
+- vi /usr/local/svnserver/project/conf/svnserve.conf
 
 ## 패키지 설치(시스템 업데이트 실시 후 진행)
 - svn 패키지 설치
