@@ -15,7 +15,7 @@
 
 ### DONE
 - [x] 개인 서버 구축 완료
-  - [보안상의 이유로 영화 다운로드용 파일 서버 링크](ftp://101.235.203.94:20000)
+  - ~~[보안상의 이유로 영화 다운로드용 파일 서버 링크](ftp://101.235.203.94:20000)~~ **
 
 <hr>
 <br>
@@ -26,37 +26,6 @@
 - [Ubuntu](ubuntu/README.md)
 
 <hr>
-<br>
-
-~~## 기타~~(변경 전)
-## 대용량 파일 커밋
-- 설치
-  - [Git lfs 다운로드](https://git-lfs.github.com/)
-- Git Bash 또는 Linux에서 대용량 파일을 커밋하려는 Repository로 이동
-  ```sh
-  $ git lfs install
-  Updated pre-push hook.
-  Git LFS initialized.
-  ```
- 
-<br>
-  
-- 대용량 파일을 git-lfs의 관리 대상으로 지정
-  ```sh
-  $ git lfs track "*.확장자"
-  Tracking *.exe
-  
-  $ git add 파일
-  
-  $ git commit -m 커밋 메세지
-  [master (...) ... ] 커밋 메세지
-  (...)
-  
-  $ git push
-  Uploading LFS objects: ...
-  ```
-
-
 <br>
 
 ## 네트워크 정보 확인
