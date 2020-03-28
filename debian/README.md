@@ -189,7 +189,7 @@ network={
 # 추가 설정
 ## 버전 확인
 - 라즈베리 파이 환경 확인
-  - `cat /proc/cpuinfo`
+  - `sudo cat /proc/cpuinfo`
 
 <hr>
 <br>
@@ -296,14 +296,14 @@ network={
   - `sudo apt-get install jwhois -y`
 
 - IP 접속 지역 확인
-  - `whois [ip]`
+  - `sudo whois [ip]`
 
 <hr>
 <br>
 
 ## IP 주소 확인
 - 공인 IP 확인
-  - `curl bot.whatismyipaddress.com`
+  - `sudo curl bot.whatismyipaddress.com`
 
 - 내부 IP 확인
   - `ifconfig` 또는 `ipconfig`
@@ -366,7 +366,7 @@ network={
   - [vsftpd 옵션들](vsftpd/vsftpd.md)
 
 - 접속 중인 유저 확인
-  - `ps aux | grep vsftpd`
+  - `sudo ps aux | grep vsftpd`
 
 <hr>
 <br>
@@ -416,11 +416,11 @@ network={
   - `sudo update-alternatives --config javac`
 
 - 버전 확인
-  - `java --version`
+  - `sudo java --version`
 
 - JAVA_HOME 설정(Maven 설치 시 JAVA_HOME이 설정되어 있지 않으면 오류 발생)
-- `export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_221`
-- `export PATH=$JAVA_HOME/jre/bin:$PATH`
+- `sudo export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_221`
+- `sudo export PATH=$JAVA_HOME/jre/bin:$PATH`
 
 - 재부팅
   - `sudo shutdown -r now`
@@ -494,7 +494,7 @@ network={
   - `sudo apt-get install maven -y`
 
 - 설치 후 버전 확인
-  - `mvn --version`
+  - `sudo mvn --version`
 
 <hr>
 <br>
@@ -569,7 +569,7 @@ network={
     ```
 
 - Umask 설정
-  - `which svnserve`
+  - `sudo which svnserve`
   - `sudo mv /usr/bin/svnserve /usr/bin/svnserve_orig`
   - `sudo touch /usr/bin/svnserve`
   - `sudo chmod 755 /usr/bin/svnserve`
@@ -772,7 +772,7 @@ network={
 - 도커 설치(일반적인 리눅스 설치방법과 상이함)
   - `sudo apt update`
   - `sudo apt install apt-transport-https ca-certificates curl software-properties-common`
-  - `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+  - `sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
   - `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"`
   - `sudo apt update`
   - `sudo apt-cache policy docker-ce`
@@ -793,7 +793,7 @@ network={
 - 도커 그룹 설정
   - `sudo addgroup --system docker`
   - `sudo adduser $USER docker`
-  - `newgrp docker`
+  - `sudo newgrp docker`
 
 - 도커 enable/disenable
   - `sudo snap disable docker`
@@ -803,8 +803,8 @@ network={
   - `sudo docker login`
 
 - MS-SQL 이미지 받기
-  - `docker pull mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
-  - `docker run -e ACCEPT_EULA=Y -e SA_PASSWORD='sisparang1!' -e MSSQL_PID=Express -p 443:443 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
+  - `sudo docker pull mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
+  - `sudo docker run -e ACCEPT_EULA=Y -e SA_PASSWORD='sisparang1!' -e MSSQL_PID=Express -p 443:443 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu`
 
 <hr>
 <br>
