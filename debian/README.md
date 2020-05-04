@@ -988,3 +988,26 @@ network={
 
 <hr>
 <br>
+
+# MongoDB 설치
+- 설치
+  - `sudo apt-get update`
+  - `sudo apt-get upgrade -y`
+  - `sudo apt-get install mongodb-server -y`
+
+- mongodb 외부접속 허용
+  - `sudo vi /etc/mongodb.conf`
+  - `bind_ip 주석 제거`
+  - `port` 변경을 원하면 주석을 제거하고 원하는 번호 기입
+
+- 변경한 설정 적용
+  - `sudo service mongodb restart`
+
+- mongodb 작동 확인
+  - `sudo cat /var/log/mongodb/mongod.log`
+
+- mongodb 접속
+  - `mongo`
+
+<hr>
+<br>
