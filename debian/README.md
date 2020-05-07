@@ -1006,8 +1006,10 @@ network={
 - mongodb 작동 확인
   - `sudo cat /var/log/mongodb/mongod.log`
 
-- mongodb 접속
+- mongodb 접속 및 초기 설정
   - `mongo`
+  - `use admin`
+  - `db.addUser({user:"administrator", pwd:"1234", roles:["userAdmin", "dbAdmin", "readWrite"]})`
 
 <hr>
 <br>
