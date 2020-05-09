@@ -1011,5 +1011,7 @@ network={
   - `use admin`
   - `db.addUser({user:"administrator", pwd:"1234", roles:["userAdmin", "dbAdmin", "readWrite"]})`
 
+- *외부접속툴은 compass 기용*
+
 <hr>
 <br>
