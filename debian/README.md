@@ -524,11 +524,11 @@ network={
 
 ## Repository 폴더 생성
 - 폴더 생성
-  - mkdir /home/pi/repose
-  - svnadmin create /home/pi/repose/{프로젝트명}
+  - `mkdir /home/pi/repose`
+  - `svnadmin create /home/pi/repose/{프로젝트명}`
 
 ## svn 접속권한 설정
-- vi /usr/local/svnserver/project/conf/svnserve.conf
+- `sudo vi /usr/local/svnserver/project/conf/svnserve.conf`
 
 ## 패키지 설치(시스템 업데이트 실시 후 진행)
 - svn 패키지 설치
