@@ -29,6 +29,8 @@
    - `update mysql.user set authentication_string=PASSWORD('새로운 패스워드') where user='root';`
    - `flush privileges;`
    - `\q`
+   - `sudo killall mysqld`
+   - `sudo service mysql start`
 
 - mariadb 원격접속 허용을 위한 포트 변경
   - `sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf`
