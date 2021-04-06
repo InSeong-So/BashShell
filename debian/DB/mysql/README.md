@@ -21,6 +21,14 @@
   - root 계정 암호 설정 : `update user set password=password('변경할암호') where User='root';`
   - 적용 : `flush privileges;`
   - mysql 종료 : `\q`
+ 
+ - root 암호 재설정 : root 비밀번호를 분실했을 때(sudo 권한은 있어야 함)
+   - `sudo service mysql stop`
+   - `sudo /usr/bin/mysqld_safe --skip-grant-tables &`
+   - `sudo mysql -u root mysql`
+   - `update mysql.user set authentication_string=PASSWORD('새로운 패스워드') where user='root';`
+   - `flush privileges;`
+   - `\q`
 
 - mariadb 원격접속 허용을 위한 포트 변경
   - `sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf`
